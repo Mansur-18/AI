@@ -1,0 +1,25 @@
+# Import Basic Liabaries
+
+from deepface import DeepFace
+import matplotlib.pyplot as plt
+import cv2 as cv
+import os
+
+
+# # Read Predictive Image
+image_path=input('Enter Image with file name ')
+
+img=cv.imread('img.jpg')
+
+# # Model Prediction
+result=DeepFace.analyze(img, actions = ["age", "gender", "emotion", "race"])
+
+# # Visualization
+plt.imshow(img[:,:,::-1]) #BRG to RGB
+plt.title("Hello "+result["gender"])
+
+# # Image Analyzer
+
+print("Age : ",result['age'])
+print("Race : ",result['dominant_race'])
+print("Emotion : ",result['dominant_emotion'])
